@@ -16,3 +16,6 @@ if(in_array('application/geo-point', $context['headers']['accept'])) {
 	exit();
 }
 
+?>
+
+<h1><?= $city['name'] ?></h1>
