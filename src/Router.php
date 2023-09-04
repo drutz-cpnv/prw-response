@@ -40,20 +40,28 @@ class Router
 
 			if(preg_match_all($route['pattern'], $url, $matches) !== 0) {
 				$context = [
+					'url' => $url,
+					'method' => $method,
 					'headers' => [
 						'accept' => explode(',', $_SERVER['HTTP_ACCEPT']),
 					]
 				];
+				//dd($route['attrs'], $matches);
 				foreach ($route['attrs'] as $attr) {
 					$context[$attr] = $matches[$attr][0];
 				}
 
+				//dd($context);
+
 				require "$this->viewRootPath{$route['view']}";
 
+				exit();
 				break;
 			}
 
 		}
+
+		http_response_code(404);
 
 	}
 
